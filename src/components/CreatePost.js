@@ -1,4 +1,4 @@
-/*import React, { useState } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 
 function CreatePost() {
@@ -52,5 +52,3 @@ function CreatePost() {
 }
 
 export default CreatePost;
-
-*/

@@ -1,19 +1,31 @@
-// src/components/NavBar.js
 import React, { useState } from 'react';
 import LoginPopup from './LoginPopup';
+import CreateListingPopup from './CreateListingPopup';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { setUserLoggedOut } from '../actions/authActions';
+import { setView } from '../actions/viewActions';
 
 
 const NavBar = () => {
     const dispatch = useDispatch();
-    const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
-    const [showPopup, setShowPopup] = useState(false);
 
-    const togglePopup = () => setShowPopup(!showPopup);
+    const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
+
+    const handleChangeView = (newView) => {
+        dispatch(setView(newView));
+    };
+
+    //refactor to redux
+    const [showLoginPopup, setShowLoginPopup] = useState(false);
+    const toggleLoginPopup = () => setShowLoginPopup(!showLoginPopup);
+
+    const [showListingPopup, setShowListingPopup] = useState(false);
+    const toggleListingPopup = () => setShowListingPopup(!showListingPopup);
+
 
     const onUserLoggedIn = (data) => {
-        togglePopup();
+        toggleLoginPopup();
     };
 
     const handleLogout = () => {
@@ -24,9 +36,8 @@ const NavBar = () => {
         <div style={{ display: 'flex', justifyContent: 'space-between', padding: '10px', backgroundColor: '#f0f0f0' }}>
             {/* Left Buttons */}
             <div>
-                <button>Button 1</button>
-                <button>Button 2</button>
-                <button>Button 3</button>
+                <button onClick={() => handleChangeView('welcome')}>Home</button>
+                <button onClick={() => handleChangeView('listings')}>Listings</button>
             </div>
 
             {/* Website Name */}
@@ -39,16 +50,17 @@ const NavBar = () => {
                 {isLoggedIn ? (
                     <>
                         <button onClick={handleLogout}>Logout</button>
-                        <button>Profile</button>
-                        <button>Settings</button>
+                        <button onClick={toggleListingPopup}>Create Listing</button>
+                        <button>My Listings</button>
                     </>
                 ) : (
-                    <button onClick={togglePopup}>Login</button>
+                    <button onClick={toggleLoginPopup}>Login</button>
                 )}
             </div>
 
             {/* Login Popup */}
-            {showPopup && <LoginPopup onClose={togglePopup} onUserLoggedIn={onUserLoggedIn} />}
+            {showLoginPopup && <LoginPopup onClose={toggleLoginPopup} onUserLoggedIn={onUserLoggedIn} />}
+            {showListingPopup && <CreateListingPopup onClose={toggleListingPopup}/>}
         </div>
     );
 };

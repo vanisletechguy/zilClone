@@ -1,7 +1,8 @@
 const initialState = {
     isLoggedIn: false,
     token: null,
-    userDetails: {}
+    userDetails: {},
+    userId: null
 };
 
 function authReducer(state = initialState, action) {
@@ -11,14 +12,17 @@ function authReducer(state = initialState, action) {
                 ...state,
                 isLoggedIn: true,
                 token: action.payload.token,
-                userDetails: action.payload.userDetails
+                userDetails: action.payload.userDetails,
+                // userId: action.payload.userDetails.userId  
+                userId: action.payload.userId  
             };
         case 'SET_USER_LOGGED_OUT':
             return {
                 ...state,
                 isLoggedIn: false,
                 token: null,
-                userDetails: {}
+                userDetails: {},
+                userId: null
             };
         default:
             return state;

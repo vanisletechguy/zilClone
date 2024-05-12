@@ -1,9 +1,9 @@
-/*import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 function ViewPosts() {
     const [posts, setPosts] = useState([]);
-
+    /*
     useEffect(() => {
         const fetchPosts = async () => {
             try {
@@ -17,7 +17,17 @@ function ViewPosts() {
         };
         fetchPosts();
     }, []);
+    */
+    return (
+        <div>
+            <h2>View Posts</h2>
+        </div>
+    );
+}
 
+export default ViewPosts;
+
+/*
     return (
         <div>
             <h2>View Posts</h2>
@@ -30,7 +40,4 @@ function ViewPosts() {
             </ul>
         </div>
     );
-}
-
-export default ViewPosts;
-*/
+    */

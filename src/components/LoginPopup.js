@@ -19,7 +19,9 @@ const LoginPopup = ({ onClose, onUserLoggedIn }) => {
             const data = await login(email, password);
             if (data && data.yourToken) {
                 //console.log('Login Success:', data);
-                dispatch(setUserLoggedIn(data.yourToken, {email}));
+                //dispatch(setUserLoggedIn(data.yourToken, {email, userId}));
+                dispatch(setUserLoggedIn(data.yourToken, {email, userId: data.userId}));
+
                 onClose();
             } else {
                 throw new Error('Login failed: No token received');
@@ -35,7 +37,8 @@ const LoginPopup = ({ onClose, onUserLoggedIn }) => {
         try {
             const data = await register(firstName, lastName, email, password);
             if (data && data.yourToken) {
-                dispatch(setUserLoggedIn(data.yourToken, {email}));
+                //dispatch(setUserLoggedIn(data.yourToken, {email, userId));
+                dispatch(setUserLoggedIn(data.yourToken, {email, userId: data.userId}));
                 //console.log('Registration Success:', data);
                 onClose();
             } else {
