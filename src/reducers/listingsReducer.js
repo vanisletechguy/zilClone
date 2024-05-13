@@ -16,13 +16,13 @@ function listingsReducer(state = initialState, action) {
             return {
                 ...state,
                 loading: false,
-                listings: action.payload.listings
+                listings: action.payload
             };
         case 'FETCH_LISTINGS_FAILURE':
             return {
                 ...state,
                 loading: false,
-                error: action.payload.error,
+                error: action.payload,
                 listings: []
             };
         default:

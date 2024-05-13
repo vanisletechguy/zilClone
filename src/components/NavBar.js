@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import LoginPopup from './LoginPopup';
-import CreateListingPopup from './CreateListingPopup';
-
+//import LoginPopup from './LoginPopup';
+//import CreateListingPopup from './CreateListingPopup';
 import { useDispatch, useSelector } from 'react-redux';
-import { setUserLoggedOut } from '../actions/authActions';
+//import { setUserLoggedOut } from '../actions/authActions';
 import { setView } from '../actions/viewActions';
-
+import { setUserLoggedOut, } from '../actions/authActions.js';
+import { showCreateListingPopup, showLoginPopup } from '../actions/popupActions.js';
 
 const NavBar = () => {
     const dispatch = useDispatch();
@@ -17,16 +17,16 @@ const NavBar = () => {
     };
 
     //refactor to redux
-    const [showLoginPopup, setShowLoginPopup] = useState(false);
-    const toggleLoginPopup = () => setShowLoginPopup(!showLoginPopup);
+    //const [showLoginPopup, setShowLoginPopup] = useState(false);
+    //const toggleLoginPopup = () => setShowLoginPopup(!showLoginPopup);
 
-    const [showListingPopup, setShowListingPopup] = useState(false);
-    const toggleListingPopup = () => setShowListingPopup(!showListingPopup);
+    //const [showListingPopup, setShowListingPopup] = useState(false);
+    //const toggleListingPopup = () => setShowListingPopup(!showListingPopup);
 
 
-    const onUserLoggedIn = (data) => {
-        toggleLoginPopup();
-    };
+    //    const onUserLoggedIn = (data) => {
+        //        toggleLoginPopup();
+    //};
 
     const handleLogout = () => {
         dispatch(setUserLoggedOut());
@@ -46,21 +46,18 @@ const NavBar = () => {
             </div>
 
             {/* Right Buttons */}
-            <div>
+
+             <div>
                 {isLoggedIn ? (
                     <>
                         <button onClick={handleLogout}>Logout</button>
-                        <button onClick={toggleListingPopup}>Create Listing</button>
+                        <button onClick={() => dispatch(showCreateListingPopup())}>Create Listing</button>
                         <button>My Listings</button>
                     </>
                 ) : (
-                    <button onClick={toggleLoginPopup}>Login</button>
+                    <button onClick={() => dispatch(showLoginPopup())}>Login</button>
                 )}
             </div>
-
-            {/* Login Popup */}
-            {showLoginPopup && <LoginPopup onClose={toggleLoginPopup} onUserLoggedIn={onUserLoggedIn} />}
-            {showListingPopup && <CreateListingPopup onClose={toggleListingPopup}/>}
         </div>
     );
 };

@@ -8,7 +8,7 @@ export const fetchListingsBegin = () => ({
 
 export const fetchListingsSuccess = listings => ({
     type: 'FETCH_LISTINGS_SUCCESS',
-    payload: { listings }
+    payload: listings
 });
 
 export const fetchListingsFailure = error => ({
@@ -21,7 +21,11 @@ export function fetchListings() {
         dispatch(fetchListingsBegin());
         return fetchListingsApi()
         .then(response => {
-            dispatch(fetchListingsSuccess(response.data.listings));
+            //dispatch(fetchListingsSuccess(response.data.listings));
+            console.log("response was: ", response);
+            console.log("response.data was: ", response.data);
+            //dispatch(fetchListingsSuccess(response.listings));
+            dispatch(fetchListingsSuccess(response.data));
         })
         .catch(error => {
             dispatch(fetchListingsFailure(error.message));
@@ -44,43 +48,8 @@ export const createListingFailure = error => ({
 });
 
 
-
-/*
-export const createListing = (listingData, token) => {
-    return dispatch => {
-        dispatch({ type: 'CREATE_LISTING_BEGIN' });
-        axios.post(`${API_URL}/listings/create`, listingData, {
-            headers: { Authorization: `Bearer ${token}` }
-        })
-        .then(response => {
-            dispatch({ type: 'CREATE_LISTING_SUCCESS', payload: response.data });
-            // Optionally handle response data, e.g., displaying a message or redirecting
-        })
-        .catch(error => {
-            dispatch({ type: 'CREATE_LISTING_FAILURE', payload: error });
-            // Optionally handle error, e.g., displaying error messages
-            console.error("Error creating listing:", error);
-        });
-    };
-};
-*/
-
-
-
 export const createListing = (listingData, token, userId) => {
     return dispatch => {
-        /*
-        dispatch(createListingBegin());
-        return createListingsApi(listingData, token)
-        .then(response => {
-            dispatch(createListingSuccess(response.listing));
-            return response.listing;
-        })
-        .catch(error => {
-            dispatch(createListingFailure(error.message));
-        });
-        */
-
         dispatch(createListingBegin());
         createListingsApi(listingData, token)
             .then(response => {
@@ -92,10 +61,7 @@ export const createListing = (listingData, token, userId) => {
                 const errorMsg = error.response ? error.response.data.message : error.message;
                 dispatch(createListingFailure(errorMsg));
             });
-
-
     };
-
 };
 
 

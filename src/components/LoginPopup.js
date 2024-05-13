@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUserLoggedIn, setUserLoggedOut } from '../actions/authActions'; 
 import { login, register } from '../js/api'; 
+import { hideLoginPopup } from '../actions/popupActions.js';
 
 const LoginPopup = ({ onClose, onUserLoggedIn }) => {
     const [email, setEmail] = useState('');
@@ -21,8 +22,8 @@ const LoginPopup = ({ onClose, onUserLoggedIn }) => {
                 //console.log('Login Success:', data);
                 //dispatch(setUserLoggedIn(data.yourToken, {email, userId}));
                 dispatch(setUserLoggedIn(data.yourToken, {email, userId: data.userId}));
-
-                onClose();
+                dispatch(hideLoginPopup());
+                    //onClose();
             } else {
                 throw new Error('Login failed: No token received');
             }
@@ -39,8 +40,9 @@ const LoginPopup = ({ onClose, onUserLoggedIn }) => {
             if (data && data.yourToken) {
                 //dispatch(setUserLoggedIn(data.yourToken, {email, userId));
                 dispatch(setUserLoggedIn(data.yourToken, {email, userId: data.userId}));
+                dispatch(hideLoginPopup());
                 //console.log('Registration Success:', data);
-                onClose();
+                    //onClose();
             } else {
                 throw new Error('Registration failed: No token received');
             }
@@ -85,7 +87,8 @@ const LoginPopup = ({ onClose, onUserLoggedIn }) => {
             <button onClick={switchMode}>
                 {isRegistering ? 'Switch to Login' : 'Switch to Register'}
             </button>
-            <button onClick={onClose}>Close</button>
+            <button onClick={() => dispatch(hideLoginPopup())}>Close</button>
+
         </div>
     );
 };
