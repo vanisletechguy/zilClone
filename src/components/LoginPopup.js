@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { setUserLoggedIn, setUserLoggedOut } from '../actions/authActions'; 
-import { login, register } from '../js/api'; 
+import { useDispatch } from 'react-redux';
+import { setUserLoggedIn } from '../actions/authActions';
+import { login, register } from '../js/api';
 import { hideLoginPopup } from '../actions/popupActions.js';
+import styles from './LoginPopup.module.css';
 
-const LoginPopup = ({ onClose, onUserLoggedIn }) => {
+const LoginPopup = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [firstName, setFirstName] = useState('');
@@ -19,11 +20,8 @@ const LoginPopup = ({ onClose, onUserLoggedIn }) => {
         try {
             const data = await login(email, password);
             if (data && data.yourToken) {
-                //console.log('Login Success:', data);
-                //dispatch(setUserLoggedIn(data.yourToken, {email, userId}));
-                dispatch(setUserLoggedIn(data.yourToken, {email, userId: data.userId}));
+                dispatch(setUserLoggedIn(data.yourToken, data.userId, email) );
                 dispatch(hideLoginPopup());
-                    //onClose();
             } else {
                 throw new Error('Login failed: No token received');
             }
@@ -38,11 +36,8 @@ const LoginPopup = ({ onClose, onUserLoggedIn }) => {
         try {
             const data = await register(firstName, lastName, email, password);
             if (data && data.yourToken) {
-                //dispatch(setUserLoggedIn(data.yourToken, {email, userId));
-                dispatch(setUserLoggedIn(data.yourToken, {email, userId: data.userId}));
+                dispatch(setUserLoggedIn(data.yourToken, { email, userId: data.userId }));
                 dispatch(hideLoginPopup());
-                //console.log('Registration Success:', data);
-                    //onClose();
             } else {
                 throw new Error('Registration failed: No token received');
             }
@@ -58,39 +53,56 @@ const LoginPopup = ({ onClose, onUserLoggedIn }) => {
     };
 
     return (
-        <div style={{ position: 'fixed', top: '50%', left: '50%', 
-            transform: 'translate(-50%, -50%)', padding: '20px', 
-            backgroundColor: 'white', boxShadow: '0 4px 8px rgba(0,0,0,0.1)' }}>
-
-
-            <form onSubmit={isRegistering ? handleRegister : handleLogin}>
-                {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-                {isRegistering ? (
-                    <>
-                        <input type="text" 
-                            placeholder="First Name" value={firstName} 
-                            onChange={e => setFirstName(e.target.value)} />
-                        <input type="text" 
-                            placeholder="Last Name" value={lastName} 
-                            onChange={e => setLastName(e.target.value)} />
-                    </>
-                ) : null}
-                <input type="email" 
-                    placeholder="Email" value={email} 
-                    onChange={e => setEmail(e.target.value)} />
-                <input type="password" 
-                    placeholder="Password" value={password} 
-                    onChange={e => setPassword(e.target.value)} />
-                <button type="submit">{isRegistering ? 'Register' : 'Login'}</button>
-            </form>
-
-            <button onClick={switchMode}>
-                {isRegistering ? 'Switch to Login' : 'Switch to Register'}
-            </button>
-            <button onClick={() => dispatch(hideLoginPopup())}>Close</button>
-
+        <div className={styles.overlay}>
+            <div className={styles.popupContainer}>
+                <form onSubmit={isRegistering ? handleRegister : handleLogin} className={styles.form}>
+                    {errorMessage && <p className={styles.errorMessage}>{errorMessage}</p>}
+                    {isRegistering && (
+                        <>
+                            <input
+                                type="text"
+                                placeholder="First Name"
+                                value={firstName}
+                                onChange={e => setFirstName(e.target.value)}
+                                className={styles.inputField}
+                            />
+                            <input
+                                type="text"
+                                placeholder="Last Name"
+                                value={lastName}
+                                onChange={e => setLastName(e.target.value)}
+                                className={styles.inputField}
+                            />
+                        </>
+                    )}
+                    <input
+                        type="email"
+                        placeholder="Email"
+                        value={email}
+                        onChange={e => setEmail(e.target.value)}
+                        className={styles.inputField}
+                    />
+                    <input
+                        type="password"
+                        placeholder="Password"
+                        value={password}
+                        onChange={e => setPassword(e.target.value)}
+                        className={styles.inputField}
+                    />
+                    <button type="submit" className={styles.submitButton}>
+                        {isRegistering ? 'Register' : 'Login'}
+                    </button>
+                </form>
+                <button onClick={switchMode} className={styles.switchButton}>
+                    {isRegistering ? 'Switch to Login' : 'Switch to Register'}
+                </button>
+                <button onClick={() => dispatch(hideLoginPopup())} className={styles.closeButton}>
+                    Close
+                </button>
+            </div>
         </div>
     );
 };
 
 export default LoginPopup;
+

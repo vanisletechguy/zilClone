@@ -1,6 +1,6 @@
-export const setUserLoggedIn = (token, userDetails) => ({
+export const setUserLoggedIn = (token, userId, email) => ({
     type: 'SET_USER_LOGGED_IN',
-    payload: { token, userDetails }
+    payload: { token, userId, email }
 });
 
 export const setUserLoggedOut = () => ({

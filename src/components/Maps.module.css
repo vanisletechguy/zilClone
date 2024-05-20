@@ -1,0 +1,34 @@
+.infoWindow {
+    width: 250px;
+    overflow: hidden;
+    text-align: center;
+}
+
+.image-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center; 
+    margin-bottom: 10px;
+}
+
+.image {
+    max-width: 240px;
+    width: auto;
+    height: auto;
+    margin-bottom: 10px;
+    object-fit: contain;
+}
+
+.detailsContainer {
+    margin-top: 40px; /* Add space between the slider and the text */
+}
+
+.detailsContainer .title {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.detailsContainer .text {
+    font-size: 14px;
+    margin: 2px 0; /* Adjust as necessary */
+}

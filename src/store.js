@@ -1,15 +1,15 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import {thunk} from 'redux-thunk'; 
-import listingsReducer from './reducers/listingsReducer';
 import authReducer from './reducers/AuthReducer'; 
-import viewReducer from './reducers/viewReducer'; 
+import listingsReducer from './reducers/listingsReducer';
 import popupReducer from './reducers/popupReducer'; 
+import viewReducer from './reducers/viewReducer'; 
 
 const rootReducer = combineReducers({
-    listings: listingsReducer,
     auth: authReducer,
-    view: viewReducer,
-    popup: popupReducer
+    listings: listingsReducer,
+    popup: popupReducer,
+    view: viewReducer
 });
 
 const store = createStore(

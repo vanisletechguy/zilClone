@@ -1,0 +1,1162 @@
+/* ViewPosts.module.css */
+/*
+.container {
+    flex: 6;
+    padding: 20px;
+    background-color: #f8f8f8;
+}
+
+.gridContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(440px, 1fr));
+    gap: 10px;
+}
+
+.containerTitle {
+    margin-top: 0px;
+}
+
+.box {
+    background-color: white;
+    position: relative;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.top {
+    position: relative;
+}
+
+.img {
+    width: 100%;
+    margin-bottom: -4px;
+}
+
+.iconContainer {
+    position: absolute;
+    right: 20px;
+    bottom: 15px;
+    color: white;
+    font-size: 20px;
+}
+
+.bottom {
+    padding: 20px 15px;
+    position: relative;
+}
+
+.title {
+    font-size: 15px;
+}
+
+.description {
+    margin: 15px 0;
+    font-size: 13px;
+    line-height: 1.4;
+    color: #777;
+}
+
+.advants {
+    display: flex;
+}
+
+.advantsItem {
+    margin-right: 15px;
+}
+
+.advantsTitle {
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.advantsDetail {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.advantsIcon {
+    color: #777;
+    font-size: 22px;
+}
+
+.advantsText {
+    font-size: 12px;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.advantsSubText {
+    color: #777;
+    font-weight: normal;
+    margin-left: 5px;
+}
+
+.price {
+    margin-top: 20px;
+}
+
+.priceTitle {
+    display: block;
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.priceValue {
+    color: #3eaba1;
+    font-size: 22px;
+}
+
+.editButton {
+    display: block;
+    margin: 10px 0;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    text-align: center;
+    transition: background-color 0.3s;
+}
+
+.editButton:hover {
+    background-color: #0056b3;
+}
+*/
+
+
+
+
+
+
+/*
+
+
+.container {
+    display: flex;
+    flex: 6;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.filtersContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 10px;
+    justify-content: flex-start; 
+    width: 100%; 
+}
+
+.filterBubble {
+    display: flex;
+    align-items: center;
+    background-color: #eee;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    padding: 5px 10px;
+    font-size: 14px;
+}
+
+.filterRemove {
+    margin-left: 5px;
+    cursor: pointer;
+    color: red;
+}
+
+.gridContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(440px, 1fr));
+    gap: 20px;
+}
+
+.box {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s;
+    padding: 10px; 
+}
+
+.box:hover {
+    transform: scale(1.05);
+}
+
+.top {
+    position: relative;
+}
+
+.img {
+    width: 100%;
+    height: auto;
+}
+
+.iconContainer {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: white;
+    display: flex;
+    gap: 5px;
+}
+
+.bottom {
+    padding: 10px 0;
+}
+
+.title {
+    font-size: 18px;
+    margin-bottom: 5px;
+    padding-left: 10px; 
+    padding-right: 10px; 
+}
+
+.description {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 10px;
+    padding-left: 10px; 
+    padding-right: 10px; 
+}
+
+.advants {
+    display: flex;
+    flex-direction: row; 
+    align-items: flex-start; 
+    margin-bottom: 10px;
+    padding-left: 10px; 
+    padding-right: 30px; 
+}
+
+.advantsItem {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.advantsTitle {
+    font-size: 12px;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.advantsDetail {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.advantsIcon {
+    font-size: 14px;
+    color: #555;
+}
+
+.advantsText {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.advantsSubText {
+    font-size: 10px;
+    color: #777;
+}
+
+.price {
+    display: flex;
+    flex-direction: column; 
+    align-items: flex-start; 
+    padding-left: 10px; 
+    padding-right: 10px; 
+}
+
+.priceTitle {
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 5px;
+}
+
+.priceValue {
+    font-size: 18px;
+    color: #000;
+}
+
+.editButton {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-left: 10px; 
+}
+
+.editButton:hover {
+    background-color: #0056b3;
+}
+
+.resultsText {
+    align-self: flex-start; 
+    width: 100%; 
+    font-size: 16px; 
+    margin-bottom: 20px; 
+}
+
+
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+/* ######################## */
+
+
+
+/*
+
+
+
+
+.container {
+    display: flex;
+    flex: 6;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.filtersContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 10px;
+    justify-content: flex-start; 
+    width: 100%; 
+}
+
+.resultsText {
+    align-self: flex-start; 
+    width: 100%; 
+    font-size: 16px; 
+    margin-bottom: 20px; 
+}
+
+.filterBubble {
+    display: flex;
+    align-items: center;
+    background-color: #eee;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    padding: 5px 10px;
+    font-size: 14px;
+}
+
+.filterRemove {
+    margin-left: 5px;
+    cursor: pointer;
+    color: red;
+}
+
+.gridContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(440px, 1fr));
+    gap: 20px;
+}
+
+.box {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s;
+    padding: 10px; 
+}
+
+.box:hover {
+    transform: scale(1.05);
+}
+
+.top {
+    position: relative;
+}
+
+.img {
+    width: 100%;
+    height: auto;
+}
+
+.iconContainer {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: white;
+    display: flex;
+    gap: 5px;
+}
+
+.bottom {
+    padding: 10px 0; 
+}
+
+.title {
+    font-size: 18px;
+    margin-bottom: 5px;
+    padding-left: 10px; 
+    padding-right: 10px; 
+}
+
+.description {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 10px;
+    padding-left: 10px; 
+    padding-right: 10px;
+}
+
+.advants {
+    display: flex;
+    align-items: center; 
+    margin-bottom: 10px;
+    padding-left: 10px; 
+    padding-right: 10px; 
+}
+
+.advantsItem {
+    display: flex;
+    flex-direction: row; 
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.advantsItem:not(:last-child)::after {
+    content: '|'; 
+    margin: 0 10px; 
+    color: #ccc; 
+}
+
+.advantsTitle {
+    font-size: 12px;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.advantsDetail {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.advantsIcon {
+    font-size: 14px;
+    color: #555;
+}
+
+.advantsText {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.advantsSubText {
+    font-size: 10px;
+    color: #777;
+}
+
+.price {
+    display: flex;
+    flex-direction: column; 
+    align-items: flex-start; 
+    padding-left: 10px; 
+    padding-right: 10px; 
+}
+
+.priceTitle {
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 5px;
+}
+
+.priceValue {
+    font-size: 18px;
+    color: #000;
+}
+
+.editButton {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-left: 10px; 
+}
+
+.editButton:hover {
+    background-color: #0056b3;
+}
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+
+.container {
+    display: flex;
+    flex: 6;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.filtersContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 10px;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.resultsText {
+    align-self: flex-start;
+    width: 100%;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.filterBubble {
+    display: flex;
+    align-items: center;
+    background-color: #eee;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    padding: 5px 10px;
+    font-size: 14px;
+}
+
+.filterRemove {
+    margin-left: 5px;
+    cursor: pointer;
+    color: red;
+}
+
+.gridContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.box {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s;
+    padding: 10px;
+}
+
+.box:hover {
+    transform: scale(1.05);
+}
+
+.top {
+    position: relative;
+}
+
+.img {
+    width: 100%;
+    height: auto;
+}
+
+.iconContainer {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: white;
+    display: flex;
+    gap: 5px;
+}
+
+.bottom {
+    padding: 10px 0;
+}
+
+.title {
+    font-size: 18px;
+    margin-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.description {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.advants {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.advantsItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.advantsTitle {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.advantsDetail {
+    display: flex;
+    align-items: center;
+}
+
+.advantsIcon {
+    margin-right: 5px;
+}
+
+.advantsText {
+    font-size: 12px;
+}
+
+.advantsSubText {
+    font-size: 10px;
+    color: #777;
+}
+
+.price {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #f8f8f8;
+    border-top: 1px solid #ddd;
+    margin-top: 10px;
+}
+
+.priceTitle {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+}
+
+.priceValue {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+}
+
+.editButton {
+    display: block;
+    margin: 10px auto;
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.editButton:hover {
+    background-color: #0056b3;
+}
+
+.nextArrow, .prevArrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 10px;
+    border-radius: 50%;
+    z-index: 2;
+}
+
+.nextArrow {
+    right: 10px;
+}
+
+.prevArrow {
+    left: 10px;
+}
+
+.carouselCell img {
+    width: 100%;
+    height: auto;
+}
+
+
+*/
+
+
+/*
+.container {
+    display: flex;
+    flex: 6;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.filtersContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 10px;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.resultsText {
+    align-self: flex-start;
+    width: 100%;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.filterBubble {
+    display: flex;
+    align-items: center;
+    background-color: #eee;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    padding: 5px 10px;
+    font-size: 14px;
+}
+
+.filterRemove {
+    margin-left: 5px;
+    cursor: pointer;
+    color: red;
+}
+
+.gridContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(440px, 1fr));
+    gap: 20px;
+}
+
+.box {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s;
+    padding: 10px;
+}
+
+.box:hover {
+    transform: scale(1.05);
+}
+
+.top {
+    position: relative;
+}
+
+.img {
+    width: 100%;
+    height: auto;
+}
+
+.iconContainer {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: white;
+    display: flex;
+    gap: 5px;
+}
+
+.bottom {
+    padding: 10px 0;
+}
+
+.title {
+    font-size: 18px;
+    margin-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.description {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.advants {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.advantsItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.advantsTitle {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.advantsDetail {
+    display: flex;
+    align-items: center;
+}
+
+.advantsIcon {
+    margin-right: 5px;
+}
+
+.advantsText {
+    font-size: 12px;
+}
+
+.advantsSubText {
+    font-size: 10px;
+    color: #777;
+}
+
+.price {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #f8f8f8;
+    border-top: 1px solid #ddd;
+    margin-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.priceTitle {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+}
+
+.priceValue {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+}
+
+.editButton {
+    display: block;
+    margin: 10px auto;
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.editButton:hover {
+    background-color: #0056b3;
+}
+
+.carouselCell img {
+    width: 100%;
+    height: auto;
+}
+
+.slick-prev, .slick-next {
+    z-index: 1;
+}
+
+.slick-prev {
+    left: 10px;
+    z-index: 1;
+}
+
+.slick-next {
+    right: 10px;
+    z-index: 1;
+}
+
+.slick-prev:before, .slick-next:before {
+    color: black;
+}
+
+
+
+
+*/
+
+
+
+
+
+
+
+
+.container {
+    display: flex;
+    flex: 6;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.filtersContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 10px;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.resultsText {
+    align-self: flex-start;
+    width: 100%;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.filterBubble {
+    display: flex;
+    align-items: center;
+    background-color: #eee;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    padding: 5px 10px;
+    font-size: 14px;
+}
+
+.filterRemove {
+    margin-left: 5px;
+    cursor: pointer;
+    color: red;
+}
+
+.gridContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(440px, 1fr));
+    gap: 20px;
+}
+
+.box {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s;
+    padding: 10px;
+}
+
+.box:hover {
+    transform: scale(1.05);
+}
+
+.top {
+    position: relative;
+}
+
+.img {
+    width: 100%;
+    height: auto;
+}
+
+.iconContainer {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: white;
+    display: flex;
+    gap: 5px;
+}
+
+.bottom {
+    padding: 10px 0;
+}
+
+.title {
+    font-size: 18px;
+    margin-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.description {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.advants {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.advantsItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.advantsTitle {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.advantsDetail {
+    display: flex;
+    align-items: center;
+}
+
+.advantsIcon {
+    margin-right: 5px;
+}
+
+.advantsText {
+    font-size: 12px;
+}
+
+.advantsSubText {
+    font-size: 10px;
+    color: #777;
+}
+
+.price {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.priceTitle {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+}
+
+.priceValue {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+}
+
+.editButton {
+    display: block;
+    margin: 10px auto;
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.editButton:hover {
+    background-color: #0056b3;
+}
+
+.carouselCell img {
+    width: 100%;
+    height: auto;
+}
+
+.slick-prev, .slick-next {
+    z-index: 1;
+}
+
+.slick-prev {
+    left: 10px;
+    z-index: 1;
+}
+
+.slick-next {
+    right: 10px;
+    z-index: 1;
+}
+
+.sliderContainer {
+  display: inline-block;
+}
+
+
+.slick-prev, .slick-next {
+    z-index: 1;
+    width: 200px;
+    height: 200px;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+}
+
+.slick-prev:before, .slick-next:before {
+    color: black;
+    font-size: 200px;
+}
+
+.slick-prev:hover, .slick-next:hover {
+    opacity: 1;
+}
+
+.slickArrow {
+    display: none;
+}
+
+.top:hover .slickArrow {
+    display: block;
+}
+

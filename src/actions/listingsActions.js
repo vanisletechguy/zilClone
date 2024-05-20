@@ -1,5 +1,7 @@
 import { fetchListings as fetchListingsApi } from '../js/api';
 import { createListing as createListingsApi } from '../js/api';
+import { fetchFilteredListings as fetchFilteredListingsApi } from '../js/api';
+import { updateListing as updateListingApi } from '../js/api';
 
 
 export const fetchListingsBegin = () => ({
@@ -16,16 +18,33 @@ export const fetchListingsFailure = error => ({
     payload: { error }
 });
 
+export const setCurrentQuery = query => ({
+    type: 'SET_CURRENT_QUERY',
+    payload: query
+});
+
 export function fetchListings() {
     return dispatch => {
         dispatch(fetchListingsBegin());
         return fetchListingsApi()
         .then(response => {
-            //dispatch(fetchListingsSuccess(response.data.listings));
-            console.log("response was: ", response);
-            console.log("response.data was: ", response.data);
-            //dispatch(fetchListingsSuccess(response.listings));
             dispatch(fetchListingsSuccess(response.data));
+            dispatch(setCurrentQuery(null)); // Set currentQuery to null for default listings
+
+        })
+        .catch(error => {
+            dispatch(fetchListingsFailure(error.message));
+        });
+    };
+}
+
+export function fetchFilteredListings(filters) {
+    return dispatch => {
+        dispatch(fetchListingsBegin());
+        return fetchFilteredListingsApi(filters)
+        .then(response => {
+            dispatch(fetchListingsSuccess(response.data));
+            dispatch(setCurrentQuery(filters));
         })
         .catch(error => {
             dispatch(fetchListingsFailure(error.message));
@@ -48,20 +67,68 @@ export const createListingFailure = error => ({
 });
 
 
-export const createListing = (listingData, token, userId) => {
+export const createListing = (listingData, token) => {
     return dispatch => {
         dispatch(createListingBegin());
+    
         createListingsApi(listingData, token)
             .then(response => {
-                // Assuming the API returns the newly created listing object in the response body
+                console.log("in createListing action the response is: ", response);
                 dispatch(createListingSuccess(response.listing));
             })
             .catch(error => {
-                // Make sure to handle and dispatch any error that comes from the API
                 const errorMsg = error.response ? error.response.data.message : error.message;
                 dispatch(createListingFailure(errorMsg));
-            });
+            })
     };
 };
+
+
+
+export const showListingDetails = (listing) => ({
+    type: 'SHOW_LISTING_DETAILS',
+    payload: listing
+});
+
+export const hideListingDetails = () => ({
+    type: 'HIDE_LISTING_DETAILS'
+});
+
+
+
+export const updateListingBegin = () => ({
+    type: 'UPDATE_LISTING_BEGIN'
+});
+
+export const updateListingSuccess = listing => ({
+    type: 'UPDATE_LISTING_SUCCESS',
+    payload: { listing }
+});
+
+export const updateListingFailure = error => ({
+    type: 'UPDATE_LISTING_FAILURE',
+    payload: { error }
+});
+
+export const updateListing = (formData, token) => {
+    return async (dispatch, getState) => {
+        dispatch(updateListingBegin());
+        try {
+            const response = await updateListingApi(formData, token);
+            dispatch(updateListingSuccess(response));
+            const { currentQuery } = getState().listings;
+            if (currentQuery) {
+                dispatch(fetchFilteredListings(currentQuery)); // Refetch the filtered listings
+            } else {
+                dispatch(fetchListings()); // Refetch the default listings
+            }
+        } catch (error) {
+            dispatch(updateListingFailure(error.message));
+        }
+    };
+};
+
+
+
 
 

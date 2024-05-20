@@ -1,65 +1,86 @@
-import React, { useState } from 'react';
-//import LoginPopup from './LoginPopup';
-//import CreateListingPopup from './CreateListingPopup';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-//import { setUserLoggedOut } from '../actions/authActions';
 import { setView } from '../actions/viewActions';
-import { setUserLoggedOut, } from '../actions/authActions.js';
+import { setUserLoggedOut } from '../actions/authActions.js';
 import { showCreateListingPopup, showLoginPopup } from '../actions/popupActions.js';
 
 const NavBar = () => {
     const dispatch = useDispatch();
-
     const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
 
     const handleChangeView = (newView) => {
         dispatch(setView(newView));
     };
 
-    //refactor to redux
-    //const [showLoginPopup, setShowLoginPopup] = useState(false);
-    //const toggleLoginPopup = () => setShowLoginPopup(!showLoginPopup);
-
-    //const [showListingPopup, setShowListingPopup] = useState(false);
-    //const toggleListingPopup = () => setShowListingPopup(!showListingPopup);
-
-
-    //    const onUserLoggedIn = (data) => {
-        //        toggleLoginPopup();
-    //};
-
     const handleLogout = () => {
         dispatch(setUserLoggedOut());
     };
 
     return (
-        <div style={{ display: 'flex', justifyContent: 'space-between', padding: '10px', backgroundColor: '#f0f0f0' }}>
+        <div style={styles.navbar}>
             {/* Left Buttons */}
-            <div>
-                <button onClick={() => handleChangeView('welcome')}>Home</button>
-                <button onClick={() => handleChangeView('listings')}>Listings</button>
+            <div style={styles.navSection}>
+                <button style={styles.navButton} onClick={() => handleChangeView('welcome')}>
+                    Home</button>
+                <button style={styles.navButton} onClick={() => handleChangeView('listings')}>
+                    Listings</button>
             </div>
 
             {/* Website Name */}
-            <div style={{ alignSelf: 'center' }}>
-                Website Name
+            <div style={styles.websiteName}>
+                <h1 style={styles.title}>Website Name</h1>
             </div>
 
             {/* Right Buttons */}
-
-             <div>
+            <div style={styles.navSection}>
                 {isLoggedIn ? (
                     <>
-                        <button onClick={handleLogout}>Logout</button>
-                        <button onClick={() => dispatch(showCreateListingPopup())}>Create Listing</button>
-                        <button>My Listings</button>
+                        <button style={styles.navButton} onClick={handleLogout}>Logout</button>
+                        <button style={styles.navButton} onClick={() => dispatch(showCreateListingPopup())}>
+                        Create Listing</button>
+                        <button style={styles.navButton}>My Listings</button>
                     </>
                 ) : (
-                    <button onClick={() => dispatch(showLoginPopup())}>Login</button>
+                    <button style={styles.navButton} onClick={() => dispatch(showLoginPopup())}>
+                    Login</button>
                 )}
             </div>
         </div>
     );
 };
 
+const styles = {
+    navbar: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        padding: '10px 20px',
+        backgroundColor: '#282c34',
+        color: 'white',
+        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+    },
+    navSection: {
+        display: 'flex',
+        alignItems: 'center',
+    },
+    navButton: {
+        margin: '0 10px',
+        padding: '10px 20px',
+        backgroundColor: '#61dafb',
+        color: 'black',
+        border: 'none',
+        borderRadius: '4px',
+        cursor: 'pointer',
+        fontSize: '16px',
+    },
+    websiteName: {
+        textAlign: 'center',
+    },
+    title: {
+        margin: 0,
+        fontSize: '24px',
+    },
+};
+
 export default NavBar;
+

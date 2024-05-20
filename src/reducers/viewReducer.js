@@ -1,5 +1,5 @@
 const initialState = {
-    currentView: 'listings' // Default view
+    currentView: 'listings'
 };
 
 const viewReducer = (state = initialState, action) => {
