@@ -1,53 +1,10 @@
-/*import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { hideListingDetails } from '../actions/listingsActions';
-import styles from './ListingDetailsPopup.module.css';
-
-const ListingDetailsPopup = () => {
-    const dispatch = useDispatch();
-    const { selectedListing } = useSelector(state => state.listings);
-
-    if (!selectedListing) return null;
-
-    const handleClose = () => {
-        dispatch(hideListingDetails());
-    };
-
-    return (
-        <div className={styles.popupOverlay}>
-            <div className={styles.popupContent}>
-                <button onClick={handleClose} className={styles.closeButton}>Close</button>
-                <div className={styles.imageContainer}>
-                    {selectedListing.image && (
-                        <img src={`http://localhost:3131/${selectedListing.image}`} alt="Listing" className={styles.img} />
-                    )}
-                </div>
-                <div className={styles.details}>
-                    <h2>{selectedListing.address}</h2>
-                    <p>Type: {selectedListing.property_type}</p>
-                    <p>Listing Type: {selectedListing.listing_type}</p>
-                    <p>Price: ${selectedListing.price}</p>
-                    <p>Bedrooms: {selectedListing.bedrooms}</p>
-                    <p>Bathrooms: {selectedListing.bathrooms}</p>
-                    <p>Area: {selectedListing.area} Sq Ft</p>
-                </div>
-            </div>
-        </div>
-    );
-};
-
-export default ListingDetailsPopup;
-*/
-
-
-
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Slider from 'react-slick';
 import { hideListingDetails } from '../actions/listingsActions';
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import styles from './ListingDetailsPopup.module.css';
+
+const API_URL = process.env.REACT_APP_API_ADDRESS; 
 
 const ListingDetailsPopup = () => {
     const dispatch = useDispatch();
@@ -96,19 +53,19 @@ const ListingDetailsPopup = () => {
     return (
         <div className={styles.popupOverlay}>
             <div className={styles.popupContent}>
-                <button onClick={handleClose} className={styles.closeButton}>Close</button>
+                <button onClick={handleClose} className={styles.closeButton}>×</button>
                 <div className={styles.imageContainer}>
                     {images.length > 1 ? (
                         <Slider {...sliderSettings}>
                             {images.map((image, index) => (
                                 <div key={index} className={styles.carouselCell}>
-                                    <img src={`http://localhost:3131/${image}`} alt={`Listing ${index}`} className={styles.img} />
+                                    <img src={`${image}`} alt={`Listing ${index}`} className={styles.img} />
                                 </div>
                             ))}
                         </Slider>
                     ) : (
                         images.length === 1 && (
-                            <img src={`http://localhost:3131/${images[0]}`} alt="Listing" className={styles.img} />
+                            <img src={`${images[0]}`} alt="Listing" className={styles.img} />
                         )
                     )}
                 </div>
@@ -119,7 +76,7 @@ const ListingDetailsPopup = () => {
                     <p>Price: ${selectedListing.price}</p>
                     <p>Bedrooms: {selectedListing.bedrooms}</p>
                     <p>Bathrooms: {selectedListing.bathrooms}</p>
-                    <p>Area: {selectedListing.area} Sq Ft</p>
+                    <p>Area: {selectedListing.square_footage} Sq Ft</p>
                 </div>
             </div>
         </div>
@@ -127,10 +84,6 @@ const ListingDetailsPopup = () => {
 };
 
 export default ListingDetailsPopup;
-
-
-
-
 
 
 

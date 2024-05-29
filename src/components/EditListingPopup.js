@@ -4,6 +4,7 @@ import { updateListing } from '../actions/listingsActions';
 import { hideEditListingPopup } from '../actions/popupActions';
 import styles from './EditListingPopup.module.css';
 
+
 const EditListingPopup = () => {
     const dispatch = useDispatch();
     const selectedListing = useSelector(state => state.listings.selectedListing);
@@ -135,7 +136,7 @@ const EditListingPopup = () => {
                     </label>
                     {selectedListing && selectedListing.image && !imageDeleted && (
                         <div className={styles.currentImage}>
-                            <img src={`http://localhost:3131/${selectedListing.image}`} 
+                            <img src={`${selectedListing.image}`} 
                             alt="Current Listing" className={styles.image} />
                             <button type="button" onClick={handleDeleteImage} 
                             className={styles.deleteButton}>Delete Image</button>

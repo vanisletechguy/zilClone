@@ -20,7 +20,7 @@
 }
 
 .detailsContainer {
-    margin-top: 40px; /* Add space between the slider and the text */
+    margin-top: 40px; 
 }
 
 .detailsContainer .title {
@@ -30,5 +30,14 @@
 
 .detailsContainer .text {
     font-size: 14px;
-    margin: 2px 0; /* Adjust as necessary */
+    margin: 2px 0;
 }
+
+.mapContainer {
+    position: fixed;
+    top: 180px; 
+    width: 45%; 
+    height: 100%;
+    z-index: 998;
+}
+

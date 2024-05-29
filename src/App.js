@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { LoadScript } from '@react-google-maps/api';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchListings } from './actions/listingsActions';
+import { setView } from './actions/viewActions';
 import CreateListingPopup from './components/CreateListingPopup.js';
 import EditListingPopup from './components/EditListingPopup';
 import FilterBar from './components/FilterBar';
@@ -11,6 +12,7 @@ import ListingDetailsPopup from './components/ListingDetailsPopup';
 import LoginPopup from './components/LoginPopup.js';
 import NavBar from './components/NavBar.js';
 import ViewPosts from './components/ViewPosts';
+import './App.css';
 
 
 function App() {
@@ -23,21 +25,33 @@ function App() {
 
     useEffect(() => {
         dispatch(fetchListings());
+        dispatch(setView('welcome'));
     }, [dispatch]);
 
 
     const renderView = () => {
         switch (view) {
             case 'welcome':
-                return <Home />;
+                return( 
+                    <div style={{padding: '0px'}}>
+                        <FilterBar />
+                        <div style={{ display: 'flex', padding: '0px' }}>
+                            <Home />
+                        </div>
+                    </div>
+                    );
             case 'listings':
                 return ( 
                     <div>
-                    <FilterBar />
-                    <div style={{ display: 'flex', padding: '20px' }}>
-                        <GoogleMapsComponent /> 
-                        <ViewPosts />
-                    </div>
+                        <FilterBar />
+                        <div className="listings-container">
+                            <div className="map-wrapper">
+                                <GoogleMapsComponent />
+                            </div>
+                            <div className="posts-wrapper">
+                                <ViewPosts />
+                            </div>
+                        </div>
                     </div>
                 );
             default:

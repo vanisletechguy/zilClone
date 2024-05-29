@@ -53,6 +53,17 @@ export const fetchFilteredListings = async (filters) => {
 };
 
 
+export const fetchUserListings = async (userId) => {
+    try {
+        const queryParams = new URLSearchParams(userId).toString();
+        return await axios.get(`${API_URL}/filteredListings?user_id=${queryParams}`);
+    } catch (error) {
+        throw new Error(error.response.data.message || 'Unable to fetch user listings');
+    }
+};
+
+
+
 export const createListing = async (formData, token) => {
     console.log("in createListing api.js the formData is: ", formData);
     try {

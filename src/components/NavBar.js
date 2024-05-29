@@ -3,10 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setView } from '../actions/viewActions';
 import { setUserLoggedOut } from '../actions/authActions.js';
 import { showCreateListingPopup, showLoginPopup } from '../actions/popupActions.js';
+import { fetchUserListings } from '../actions/listingsActions';
+import logo from '../logo.webp'; 
+import styles from './NavBar.module.css';
 
 const NavBar = () => {
     const dispatch = useDispatch();
     const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
+    const userId = useSelector(state => state.auth.userId);
 
     const handleChangeView = (newView) => {
         dispatch(setView(newView));
@@ -16,71 +20,53 @@ const NavBar = () => {
         dispatch(setUserLoggedOut());
     };
 
+    const handleFetchUserListings = () => {
+        if (userId) {
+            console.log('userID is :', userId);
+            dispatch(fetchUserListings(userId));
+        }
+    };
+
     return (
-        <div style={styles.navbar}>
+        <div className={styles.navbar}>
             {/* Left Buttons */}
-            <div style={styles.navSection}>
-                <button style={styles.navButton} onClick={() => handleChangeView('welcome')}>
-                    Home</button>
-                <button style={styles.navButton} onClick={() => handleChangeView('listings')}>
-                    Listings</button>
+            <div className={styles.navSection}>
+                <button className={styles.navButton} onClick={() => handleChangeView('welcome')}>
+                    Home
+                </button>
+                <button className={styles.navButton} onClick={() => handleChangeView('listings')}>
+                    Listings
+                </button>
             </div>
 
             {/* Website Name */}
-            <div style={styles.websiteName}>
-                <h1 style={styles.title}>Website Name</h1>
-            </div>
+                <div className={styles.titleContainer}>
+                    <img src={logo} alt="Website Logo" className={styles.logo} />
+                    <h1 className={styles.title}>Wolliz</h1>
+                </div>
 
             {/* Right Buttons */}
-            <div style={styles.navSection}>
+            <div className={styles.navSection}>
                 {isLoggedIn ? (
                     <>
-                        <button style={styles.navButton} onClick={handleLogout}>Logout</button>
-                        <button style={styles.navButton} onClick={() => dispatch(showCreateListingPopup())}>
-                        Create Listing</button>
-                        <button style={styles.navButton}>My Listings</button>
+                        <button className={styles.navButton} onClick={handleLogout}>Logout</button>
+                        <button className={styles.navButton} onClick={() => dispatch(showCreateListingPopup())}>
+                            Create Listing
+                        </button>
+                        <button className={styles.navButton} onClick={handleFetchUserListings}>My Listings</button>
                     </>
                 ) : (
-                    <button style={styles.navButton} onClick={() => dispatch(showLoginPopup())}>
-                    Login</button>
+                    <button className={styles.navButton} onClick={() => dispatch(showLoginPopup())}>
+                        Login
+                    </button>
                 )}
             </div>
         </div>
     );
 };
 
-const styles = {
-    navbar: {
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        padding: '10px 20px',
-        backgroundColor: '#282c34',
-        color: 'white',
-        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-    },
-    navSection: {
-        display: 'flex',
-        alignItems: 'center',
-    },
-    navButton: {
-        margin: '0 10px',
-        padding: '10px 20px',
-        backgroundColor: '#61dafb',
-        color: 'black',
-        border: 'none',
-        borderRadius: '4px',
-        cursor: 'pointer',
-        fontSize: '16px',
-    },
-    websiteName: {
-        textAlign: 'center',
-    },
-    title: {
-        margin: 0,
-        fontSize: '24px',
-    },
-};
-
 export default NavBar;
+
+
+
 

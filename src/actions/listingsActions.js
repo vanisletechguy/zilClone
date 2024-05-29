@@ -2,6 +2,7 @@ import { fetchListings as fetchListingsApi } from '../js/api';
 import { createListing as createListingsApi } from '../js/api';
 import { fetchFilteredListings as fetchFilteredListingsApi } from '../js/api';
 import { updateListing as updateListingApi } from '../js/api';
+import { fetchUserListings as fetchUserListingsApi } from '../js/api';
 
 
 export const fetchListingsBegin = () => ({
@@ -29,7 +30,7 @@ export function fetchListings() {
         return fetchListingsApi()
         .then(response => {
             dispatch(fetchListingsSuccess(response.data));
-            dispatch(setCurrentQuery(null)); // Set currentQuery to null for default listings
+            dispatch(setCurrentQuery(null));
 
         })
         .catch(error => {
@@ -52,6 +53,24 @@ export function fetchFilteredListings(filters) {
     };
 }
 
+export function fetchUserListings(userId) {
+    return dispatch => {
+        dispatch(fetchListingsBegin());
+        return fetchUserListingsApi(userId)
+            .then(response => {
+                console.log("fetch by userId was successful");
+                console.log("response.data was: ", response.data);
+                dispatch(fetchListingsSuccess(response.data));
+                dispatch(setCurrentQuery({ userId }));
+            })
+            .catch(error => {
+                console.log("fetch by userId was NOT successful");
+                dispatch(fetchListingsFailure(error.message));
+            });
+    };
+}
+
+
 export const createListingBegin = () => ({
     type: 'CREATE_LISTING_BEGIN'
 });
@@ -66,14 +85,12 @@ export const createListingFailure = error => ({
     payload: { error }
 });
 
-
 export const createListing = (listingData, token) => {
     return dispatch => {
         dispatch(createListingBegin());
     
         createListingsApi(listingData, token)
             .then(response => {
-                console.log("in createListing action the response is: ", response);
                 dispatch(createListingSuccess(response.listing));
             })
             .catch(error => {
@@ -84,7 +101,6 @@ export const createListing = (listingData, token) => {
 };
 
 
-
 export const showListingDetails = (listing) => ({
     type: 'SHOW_LISTING_DETAILS',
     payload: listing
@@ -93,8 +109,6 @@ export const showListingDetails = (listing) => ({
 export const hideListingDetails = () => ({
     type: 'HIDE_LISTING_DETAILS'
 });
-
-
 
 export const updateListingBegin = () => ({
     type: 'UPDATE_LISTING_BEGIN'
@@ -118,17 +132,15 @@ export const updateListing = (formData, token) => {
             dispatch(updateListingSuccess(response));
             const { currentQuery } = getState().listings;
             if (currentQuery) {
-                dispatch(fetchFilteredListings(currentQuery)); // Refetch the filtered listings
+                dispatch(fetchFilteredListings(currentQuery));
             } else {
-                dispatch(fetchListings()); // Refetch the default listings
+                dispatch(fetchListings());
             }
         } catch (error) {
             dispatch(updateListingFailure(error.message));
         }
     };
 };
-
-
 
 
 

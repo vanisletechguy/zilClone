@@ -1,0 +1,68 @@
+.homeContainer {
+    position: relative;
+    top: 180px;
+    width: 100%;
+    height: 100%;
+    z-index: 998;
+}
+
+.heroSection {
+    position: relative;
+    width: 100%;
+    height: 60vh;
+    overflow: hidden;
+}
+
+.heroImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.heroText {
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    transform: translateY(-50%);
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.cardsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.card {
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    padding: 20px;
+    flex: 1 1 calc(33.333% - 40px); /* 3 cards in a row, with margins */
+    max-width: calc(33.333% - 40px); /* Same as flex basis */
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.card h2 {
+    margin-top: 0;
+}
+
+@media (max-width: 1024px) {
+    .card {
+        flex: 1 1 calc(50% - 40px); /* 2 cards in a row */
+        max-width: calc(50% - 40px);
+    }
+}
+
+@media (max-width: 768px) {
+    .card {
+        flex: 1 1 100%; /* Stack cards vertically */
+        max-width: 100%;
+    }
+}
+
